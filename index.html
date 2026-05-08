@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap"
+		rel="stylesheet">
+
+	<meta charset="UTF-8">
+	<title>Projeto JARVIS</title>
+
+	<style>
+		body {
+			margin: 0px;
+			font-family: Arial, Helvetica, sans-serif;
+			background-color: black;
+			color: rgb(57, 208, 238);
+			text-align: center;
+		}
+
+		.tela {
+			min-height: 100vh;
+			padding: 30px;
+			background-size: cover;
+			background-position: center;
+
+
+		}
+
+		.caixa {
+			max-width: 800px;
+			margin: auto;
+			padding: 25px;
+			border: 2px solid rgb(0, 229, 255);
+			background-color: rgb(24, 24, 24);
+			box-shadow: 0 0 67px rgb(57, 152, 186);
+			border-radius: 20px;
+		}
+
+		.logo {
+			margin-bottom: 10px;
+		}
+
+		h1 {
+
+			font-size: 48px;
+			letter-spacing: 8px;
+			margin: 10px 0;
+			color: aqua;
+			text-shadow: 0 0 13px rgb(106, 235, 255);
+
+		}
+
+		.subtitulo {
+			color: rgb(155, 183, 207);
+			margin-bottom: 30px;
+
+
+		}
+
+		.menu {
+			margin-top: 25px;
+		}
+
+		.botao {
+			width: 280px;
+			margin: 10px auto;
+			padding: 12px;
+			border: 1px solid rgb(57, 152, 186);
+			background-color: rgb(17, 19, 64);
+			color: white;
+			border-radius: 8px;
+			box-shadow: 0 0 25px rgb(42, 42, 69) (50, 71, 50);
+		}
+
+		.botao:hover {
+			background-color: #2b295a;
+			color: black;
+		}
+
+		#historico {
+			margin-top: 20px;
+			padding: 10px;
+			height: 120px;
+			overflow-y: auto;
+			border: 1px solid rgb(57, 152, 186);
+			text-align: left;
+			font-size: 14px;
+		}
+
+		input {
+			margin-top: 20px;
+			width: 280px;
+			padding: 12px;
+			/* Ensures padding doesn't affect width */
+			border: 2px solid rgb(57, 152, 186);
+			border-radius: 8px;
+			background-color: black;
+			color: white;
+			text-align: center;
+		}
+	</style>
+
+</head>
+
+<body>
+
+	<div class="tela">
+		<div class="caixa">
+
+			<img src="jarvis.png" width="200px" class="logo">
+
+			<h1>JARVIS</h1>
+			<p class="subtitulo">interface de contole</p>
+
+			<div class="menu">
+				<div class="botao" onclick="executar('vivo', this)">💡 Status</div>
+				<div class="botao" onclick="executar('Sem movimentos, senhor', this)">⚪ Movimento</div>
+				<div class="botao" onclick="executar('Ativada', this)">📡 Sinal da Buzina</div>
+				<div class="botao" onclick="executar('Acionado', this)">📟 Teste Acionamento</div>
+				<div class="botao" onclick="paraTudo()">🛑 PARAR Tudo</div>
+			</div>
+
+
+
+			<input id="comandoInput" placeholder="Digite">
+			<div class="botao" onclick="processarComando()">Enviar comando</div>
+
+			<div id="historico"></div>
+
+
+		</div>
+		<br>
+		<div>
+
+			<a href="https://youtu.be/dD12aw5KYug?si=Gb4PhaxDGyuJqZ1f" target="_self " class="botao"> Iron Man</a>
+
+		</div>
+	</div>
+
+	<script>
+
+		function executar(comando, elemento) {
+
+			let historico = document.getElementById("historico");
+
+			let linha = document.createElement("p");
+			linha.textContent = "> " + comando;
+
+			historico.appendChild(linha);
+
+			elemento.style.backgroudColor = "Blue";
+			elemento.style.color = "Black";
+
+			historico.scrollTop = historico.scrollHeight;
+
+
+		}
+
+		function processarComando() {
+
+			let input = document.getElementById("comandoInput");
+			let texto = input.value.toLowerCase();
+
+			let resposta = "";
+
+			if (texto.includes("jarvis")) {
+				resposta = "Ola, Senhor Stark";
+			} else if (texto.includes("alerta a")) {
+				resposta = "Chamando Vingadores"
+				} else if (texto.includes("pirralho")) {
+				resposta = "Ligando para Peter Parker"
+			}
+
+
+			let historico = document.getElementById("historico");
+
+			let linha = document.createElement("p");
+			linha.textContent = "> " + resposta;
+
+			historico.appendChild(linha);
+
+			input.valeu = "";
+			historico.scrollTop = historico.scrollHeight;
+
+		}
+
+		function paraTudo(){
+
+			let historico = document.getElementById("historico");
+			historico.innerHTML = "";
+
+			alert("Sistema interrompido");
+
+		}
+
+
+	</script>
+
+</body>
+
+</html>
